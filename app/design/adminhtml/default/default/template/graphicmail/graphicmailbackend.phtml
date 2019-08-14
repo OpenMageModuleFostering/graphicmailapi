@@ -1,0 +1,145 @@
+<style type="text/css">
+.black_overlay {
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+.white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 39%;
+	width: 16%;
+	height:15%;
+	padding: 16px;
+	border: 1px solid orange;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+}
+.btn {
+	background: url("images/btn_bg.gif") repeat-x scroll 0 100% #FFAC47;
+	border-color: #ED6502 #A04300 #A04300 #ED6502;
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+	cursor: pointer;
+	font: bold 12px arial, helvetica, sans-serif;
+	padding: 0 7px 1px;
+	text-align: center !important;
+	white-space: nowrap;
+	text-decoration:none;
+}
+</style>
+<div id="anchor-content" class="middle">
+  <div id="page:main-container">
+    <div id="messages">
+      <ul class="messages">
+        <?php if($_SESSION['mailinglist']){
+			  echo '<li class="success-msg">Account Information has been saved   </li></ul></li>';
+				 
+			  } 
+		  
+			else if(isset($_SESSION['message'])){ ?>
+        <?php echo $_SESSION['message']?>
+        <?php } ?>
+        <?php if(isset($_SESSION['error'])){ ?>
+        <li class="error-msg">
+          <ul>
+            <li><?php echo $_SESSION['error']?></li>
+          </ul>
+        </li>
+        <?php } ?>
+      </ul>
+    </div>
+    <div class="content-header" style="visibility: visible;">
+      <h3 class="icon-head head-system-account">GraphicMail</h3>
+      <?php $_key=explode('/',$_SERVER['REQUEST_URI']);$c=count($_key);$_key=$_key[$c-2];?>
+      <p class="form-buttons"> <a href="<?php echo $this->getUrl('*/*/reset')?>">
+        <button   class="scalable " type="button" id="id_<?php echo $_key?>"><span>Reset</span></button>
+        </a>
+        <button style="" onclick="editForm.submit();" class="scalable save" type="button" id="id_<?php echo $_key?>"><span>Save Account</span></button>
+      </p>
+    </div>
+    <?php $readonly=isset($_SESSION['mailinglist'])?'':'';?>
+    <div class="entry-edit">
+      <form id="edit_form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <div>
+          <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+        </div>
+        <div class="entry-edit-head">
+          <h4 class="icon-head head-edit-form fieldset-legend">Account Information</h4>
+          <div class="form-buttons"></div>
+        </div>
+        <div id="base_fieldset" class="fieldset ">
+          <div class="hor-scroll">
+            <table cellspacing="0" class="form-list">
+              <tbody>
+                <tr>
+                  <td class="label"><label for="userame">Enter GrapicMail Domain <span class="required">*</span></label></td>
+                  <td class="value"><input <?php echo $readonly?> type="text" class=" input-text required-entry" title="Enter GrapicMail Domain" value="<?php echo isset($_SESSION['GraphAccount'])?$_SESSION['GraphAccount'][0][domain]:''?>" name="domain" id="domain"></td>
+                </tr>
+                <tr>
+                  <td class="label"><label for="userame">GraphicMail Api Username <span class="required">*</span></label></td>
+                  <td class="value"><input <?php echo $readonly?> type="text" class=" input-text required-entry" title="User Name" value="<?php echo isset($_SESSION['GraphAccount'])?$_SESSION['GraphAccount'][0][username]:''?>" name="username" id="api_user"></td>
+                </tr>
+                <tr>
+                  <td class="label"><label for="firstname">GraphicMail Api Password<span class="required">*</span></label></td>
+                  <td class="value"><input <?php echo $readonly?> type="password" class=" input-text required-entry" title="Password" value="<?php echo isset($_SESSION['GraphAccount'])?$_SESSION['GraphAccount'][0][password]:''?>" name="password" id="firstname"></td>
+                </tr>
+                <?php if($_SESSION['mailinglist']):?>
+                <tr>
+                  <td class="label"><label for="firstname">GraphicMail Malling List</label></td>
+                  <td class="value"><?php echo $_SESSION['mailinglist']?></td>
+                </tr>
+                  </tr>
+                
+                <!----<tr>
+	  <td class="label"><label for="firstname">GraphicMail Dataset</label></td>
+	  <td class="value">
+	  < echo $_SESSION['dataset']?>
+	  </td>	
+  </tr>---->
+              <?php  endif; ?>
+                </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript">
+	  editForm = new varienForm('edit_form', '');
+	  
+  </script> 
+  </div>
+</div>
+<?php unset($_SESSION['message'])?>
+<?php unset($_SESSION['error'])?>
+<?php unset($_SESSION['GraphAccount'])?>
+<?php unset($_SESSION['mailinglist'])?>
+<?php unset($_SESSION['dataset'])?>
+<div id="light" class="white_content">
+  <?php $baseurl=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) ?>
+  <form action="<?php echo $baseurl.'index.php/graphicmail/adminhtml_graphicmailbackend/import/key/'.$_key; ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="form_key" value="<? echo $this->getFormKey(); ?>" />
+    <table>
+      <tr>
+        <td class="label">Do you Really want to Upload data </td>
+      </tr>
+      <tr>
+        <td><input class="btn" type="submit" name="import" value="Upload" />
+          <input class="btn" type="button" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" value="Cancel" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div id="fade" class="black_overlay"></div>

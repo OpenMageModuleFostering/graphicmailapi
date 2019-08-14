@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<graphicmail_adminhtml_graphicmailbackend_index>
+			<reference name="content">
+				<block type="graphicmail/adminhtml_graphicmailbackend" name="graphicmailbackend" template="graphicmail/graphicmailbackend.phtml"/>
+			</reference>
+		</graphicmail_adminhtml_graphicmailbackend_index>
+</layout>

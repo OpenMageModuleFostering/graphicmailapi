@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+    <name>GraphicMailApi</name>
+    <version>1.0.4</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Grow  your mailing list through Magento transactions! Every time someone &#xD;
+registers to buy from your online shop or service via Magento, ask them &#xD;
+to opt in to your GraphicMail newsletter. This way, you can send them &#xD;
+targeted newsletters, i.e. notify them of new specials, good deals, or &#xD;
+new products.</summary>
+    <description>This is a free extension.Grow your mailing list through Magento transactions! Every time someone registers to buy from your online shop or service via Magento, ask them to opt in to your GraphicMail newsletter. This way, you can send them targeted newsletters, i.e. notify them of new specials, good deals, or new products.</description>
+    <notes>Release notes for users and developers</notes>
+    <authors><author><name>a1professionals</name><user>a1professionals</user><email>teamlead@a1professionals.com</email></author></authors>
+    <date>2013-02-19</date>
+    <time>15:00:08</time>
+    <contents><target name="magelocal"><dir name="Module"><dir name="Graphicmail"><dir name="Block"><dir name="Adminhtml"><file name="Graphicmailbackend.php" hash="cd0b8cb2ddc3f21fd0c0844f46740389"/></dir></dir><dir name="Helper"><file name="Data.php" hash="24b41d7328fc0aa88965a1164be33aef"/></dir><dir name="controllers"><file name="AccountController.php" hash="31f5e0e8fdd9af0e234be22c9a27acb9"/><file name="AddressController.php" hash="da916d6c70d9b68b9080356dc8cae4ea"/><dir name="Adminhtml"><file name="GraphicmailbackendController.php" hash="9dc3d404466da550cb4085b892eb27d3"/></dir><file name="ManageController.php" hash="1f0625a44572f684666e35606788847b"/></dir><dir name="etc"><file name="config.xml" hash="8937c3511eedffb9559115729de78a73"/></dir><dir name="sql"><dir name="graphicmail_setup"><file name="mysql4-install-0.1.0.php" hash="ff75c4c28ce633d36e13b30d987edf91"/></dir></dir></dir></dir></target><target name="magecore"><dir name="Mage"><dir name="Customer"><dir name="Model"><file name="Graphicmail.php" hash="87398b7b99c414cb6b8e7feae60a3a68"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="graphicmail.xml" hash="d69c6f1bb796732cc830389284015853"/></dir><dir name="template"><dir name="graphicmail"><file name="graphicmailbackend.phtml" hash="c7bcf5fe4c8b6eac9c79d0afd158ae31"/><file name="graphicmailimport.phtml" hash="88230b1db1196d784eeabc76f318057c"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Module_Graphicmail.xml" hash="3a45199ddca90a9ad7e0f7e670c895b1"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<config>
+      <modules>
+        <Module_Graphicmail>
+          <version>0.1.0</version>
+        </Module_Graphicmail>
+      </modules>
+	  
+	  	<frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <module_graphicmail before="Mage_Customer">Module_Graphicmail</module_graphicmail>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+
+	<frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <module_graphicmail before="Mage_Newsletter">Module_Graphicmail</module_graphicmail>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+    </frontend>
+
+	  
+   <global>
+
+   
+   
+      <helpers>
+       <graphicmail>
+           <class>Module_Graphicmail_Helper</class>
+       </graphicmail>
+      </helpers>   
+
+	  <blocks><graphicmail><class>Module_Graphicmail_Block</class></graphicmail></blocks>
+	       <resources>
+            <graphicmail_setup>
+                <setup>
+                    <module>Module_Graphicmail</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </graphicmail_setup>
+            <graphicmail_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </graphicmail_write>
+            <graphicmail_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </graphicmail_read>
+			
+        </resources>
+	 
+   </global> 
+   <admin>
+			<routers>
+				<graphicmail>
+					<use>admin</use>
+					<args>
+						<module>Module_Graphicmail</module>
+						<frontName>graphicmail</frontName>
+					</args>
+				</graphicmail>
+			</routers>
+		    </admin><adminhtml>
+		<menu>
+			<graphicmail module="graphicmail">
+				<title>Graphicmail</title>
+				<sort_order>100</sort_order>
+				<children>
+				<graphicmailbackend module="graphicmail">
+						<title>GraphicMail Setting</title>
+						<sort_order>0</sort_order>
+						<action>graphicmail/adminhtml_graphicmailbackend</action>
+					</graphicmailbackend>
+				</children>
+			</graphicmail>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+				    <title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<graphicmail translate="title" module="graphicmail">
+							<title>Graphicmail</title>
+							<sort_order>1000</sort_order>
+							<children>
+                                <graphicmailbackend translate="title">
+									<title>GraphicMail Setting</title>
+								</graphicmailbackend>
+							</children>
+					   </graphicmail>
+					</children>
+				</admin>
+
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<graphicmail>
+				    <file>graphicmail.xml</file>
+				</graphicmail>
+			</updates>
+		</layout>
+	</adminhtml>
+
+</config> 
